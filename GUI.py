@@ -136,7 +136,6 @@ def read_board():
                     board.append(tab[25])
             positions[x + y * 8] = (Button(root, image=board[p], command=lambda p=p: change(p)))
             positions[p].grid(row=y, column=x)
-            positions[0].focus_set()
             p += 1
 
 
