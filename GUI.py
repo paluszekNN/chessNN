@@ -224,7 +224,6 @@ for y in range(8):
                 board.append(tab[25])
         positions.append(Button(root, image=board[p], command=lambda p=p: change(p)))
         positions[p].grid(row=y, column=x)
-        positions[0].focus_set()
         p += 1
 
 lab_pawn = Entry(root, width=10)
