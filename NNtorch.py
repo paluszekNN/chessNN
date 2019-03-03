@@ -26,23 +26,23 @@ class ChessValueDataset(Dataset):
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
-        self.input_layer = nn.Conv2d(20, 16, kernel_size=3, stride=1, padding=1)
-        self.hidden_layer1 = nn.Conv2d(16, 16, kernel_size=3, stride=1, padding=1)
-        self.hidden_layer2 = nn.Conv2d(16, 32, kernel_size=3, stride=2, padding=1)
+        self.input_layer = nn.Conv2d(20, 128, kernel_size=3, stride=1, padding=1)
+        self.hidden_layer1 = nn.Conv2d(128, 128, kernel_size=3, stride=1, padding=1)
+        self.hidden_layer2 = nn.Conv2d(128, 64, kernel_size=3, stride=2, padding=1)
 
-        self.hidden_layer3 = nn.Conv2d(32, 32, kernel_size=3, stride=1, padding=1)
-        self.hidden_layer4 = nn.Conv2d(32, 32, kernel_size=3, padding=1)
-        self.hidden_layer5 = nn.Conv2d(32, 64, kernel_size=3, stride=2)
+        self.hidden_layer3 = nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1)
+        self.hidden_layer4 = nn.Conv2d(64, 64, kernel_size=3, padding=1)
+        self.hidden_layer5 = nn.Conv2d(64, 32, kernel_size=3, stride=2)
 
-        self.hidden_layer6 = nn.Conv2d(64, 64, kernel_size=2, padding=1)
-        self.hidden_layer7 = nn.Conv2d(64, 64, kernel_size=2, padding=1)
-        self.hidden_layer8 = nn.Conv2d(64, 128, kernel_size=2, stride=2)
+        self.hidden_layer6 = nn.Conv2d(32, 32, kernel_size=2, padding=1)
+        self.hidden_layer7 = nn.Conv2d(32, 32, kernel_size=2, padding=1)
+        self.hidden_layer8 = nn.Conv2d(32, 16, kernel_size=2, stride=2)
 
-        self.hidden_layer9 = nn.Conv2d(128, 128, kernel_size=1)
-        self.hidden_layer10 = nn.Conv2d(128, 128, kernel_size=1)
-        self.hidden_layer11 = nn.Conv2d(128, 128, kernel_size=1)
+        self.hidden_layer9 = nn.Conv2d(16, 16, kernel_size=1)
+        self.hidden_layer10 = nn.Conv2d(16, 16, kernel_size=1)
+        self.hidden_layer11 = nn.Conv2d(16, 16, kernel_size=1)
 
-        self.output_layer = nn.Linear(128, 1)
+        self.output_layer = nn.Linear(16, 1)
 
     def forward(self, input):
         input = F.relu(self.input_layer(input))
@@ -57,7 +57,7 @@ class Net(nn.Module):
         input = F.relu(self.hidden_layer9(input))
         input = F.relu(self.hidden_layer10(input))
         input = F.relu(self.hidden_layer11(input))
-        input = input.view(-1, 128)
+        input = input.view(-1, 16)
         input = self.output_layer(input)
 
         return torch.tanh(input)
